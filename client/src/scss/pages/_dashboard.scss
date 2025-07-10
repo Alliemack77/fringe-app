@@ -1,0 +1,27 @@
+@use '../base/typography' as *;
+
+.dashboard {
+   
+    a { font-weight: $fw-700;}
+
+    .stats {
+        
+    }
+
+    .income {
+        font-size: $fs-900;
+        font-weight: $fw-700;
+    }
+
+    .review { 
+        font-size: $fs-700;
+        font-weight: $fw-700;
+    }
+
+
+
+
+   
+
+
+}
