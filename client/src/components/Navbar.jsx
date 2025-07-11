@@ -13,12 +13,10 @@ export default function Navbar () {
 
     
     return (
-        <header>
-            <div>
-                <a href="/">
-                    <img src="/src/assets/images/logo.png" alt="Back to Fringe homepage" height="89" width="68"/>
-                </a>
-            </div>
+        <header className="centered-column">
+            <a href="/">
+                <img src="/src/assets/images/logo.png" alt="Back to Fringe homepage" height="89" width="68"/>
+            </a>
             <nav className='site-navigation' aria-labelledby='nav-label'>
                 <span id='nav-label' hidden>Site</span>
 

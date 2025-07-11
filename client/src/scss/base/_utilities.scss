@@ -2,8 +2,8 @@
   display: grid;
   grid-template-columns: 
     minmax(1rem, 1fr)
-    minmax(1rem, 45rem)
-    minmax(1rem, 45rem)
+    minmax(1rem, 34rem) //544px
+    minmax(1rem, 34rem)
     minmax(1rem, 1fr);
 
     & > * {
