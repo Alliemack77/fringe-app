@@ -65,7 +65,7 @@ export default function Dashboard() {
                                         {client.history[0].total}
                                     </p>
                                 </div>
-                                <Link>Edit</Link>
+                                <Link aria-label={`Edit ${client.firstname} ${client.lastname}`} to={`/profile/clients/${client.firstname}-${client.lastname}`}>Edit</Link>
                             </li>
                         )
                     })}

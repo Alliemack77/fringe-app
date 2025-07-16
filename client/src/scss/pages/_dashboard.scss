@@ -55,11 +55,8 @@
     .recent-card {
         background-color: $clr-white;
         padding: 2rem;
-        margin-block-end: 3rem;
 
-        img {
-            margin-block-end: 1rem;
-        }
+        img { margin-block-end: 1rem;}
 
         p:has(.service) {
             padding: 0 0 .75rem;
@@ -71,10 +68,12 @@
             display: grid;
             grid-template-columns: min-content 1fr min-content;
             grid-template-rows: 1fr;
+            align-items: center;
             gap: 1rem;
 
             img {
                 max-width: 200px;
+                margin-block-end: 0;
             }
             a { justify-self: end;}
         }
