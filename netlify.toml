@@ -1,5 +1,9 @@
 [build]
-  functions = "/server/netlify/functions"
+  base = "client"
+  command = "npm run build"
+  publish = "client/public"
+[functions]
+  directory = "/server/netlify/functions"
 [[redirects]]
   force = true
   from = "/api/*"
