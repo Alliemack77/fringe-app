@@ -12,7 +12,7 @@ export default function Trending() {
                     <Link to={`/trending/${client.firstname}-${client.lastname}`}>
                         <div key={client.id}>
                             <p>{client.firstname} {client.lastname}</p>
-                            <img alt={`${client.firstname} ${client.lastname}`} src={`./src/assets/images/${client.imageURL}`} />
+                            <img alt={`${client.firstname} ${client.lastname}`} src={`client/src/assets/images/${client.imageURL}`} />
                         </div>
                     </Link>
                 )
