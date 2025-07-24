@@ -23,7 +23,7 @@ const ClientProvider = ({children}) => {
 
     const getAllClients = async () => {
         try {
-            const response = await axios.get('https://fringelookbook.netlify.app/api')
+            const response = await axios.get('https://fringelookbook.netlify.app/api/')
             const data = response.data
             setClientList(data)
         } catch (error) {
