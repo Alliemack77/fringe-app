@@ -14,7 +14,7 @@ const ClientProvider = ({children}) => {
             return 
         } else {
             try {
-                const response = await axios.post('http://localhost:5000/add', clientData)
+                const response = await axios.post('https://fringelookbook.netlify.app/api/add', clientData)
             } catch (error) {
                 console.error(error)
             }
@@ -23,7 +23,7 @@ const ClientProvider = ({children}) => {
 
     const getAllClients = async () => {
         try {
-            const response = await axios.get('http://localhost:5000')
+            const response = await axios.get('https://fringelookbook.netlify.app/api')
             const data = response.data
             setClientList(data)
         } catch (error) {
@@ -38,7 +38,7 @@ const ClientProvider = ({children}) => {
         }
 
         try {
-            const response = await axios.post('http://localhost:5000/client', clientName)
+            const response = await axios.post('https://fringelookbook.netlify.app/api/client', clientName)
             const data = response.data
             setClientDetail(data)
         } catch (error) {
