@@ -13,7 +13,7 @@ import path from 'path'
 import { fileURLToPath } from 'url';
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
-const PORT = process.env.PORT || 5000;
+// const PORT = process.env.PORT || 5000;
 const uri = process.env.MONGO_URL
 const client = new MongoClient(uri);
 const database = client.db("Fringe")
@@ -82,4 +82,4 @@ app.get("*", (req, res) => {
     res.sendFile(path.join(__dirname, "/client/build", "index.html"))
 })
 
-app.listen(PORT, () => console.log(`Your cool server is listening on port ${PORT}`))
+app.listen(process.env.PORT || 5000, () => console.log(`Your cool server is listening on port ${process.env.PORT || 5000}`))
