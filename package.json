@@ -8,9 +8,11 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "cd server/client && npm run dev",
-    "server": "cd server && npm start",
-    "dev": "concurrently \"npm start\" \"npm run server\""
+    "client": "cd server/client && npm run dev",
+    "server": "cd server && npm run dev",
+    "dev": "concurrently \"npm run client\" \"npm run server\"",
+    "start": "cd server && node server.js",
+    "heroku-postbuild": "cd server/client && npm install && npm run build"
   },
   "devDependencies": {
     "concurrently": "^9.2.0"
