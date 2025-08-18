@@ -27,7 +27,7 @@ async function getAllClients() {
     try {
         const items = await entries.find({}).toArray() 
         return items
-    } catch {
+    } catch (error) {
         console.error("An error occured in the getAllClients function", error)
     }
 }
