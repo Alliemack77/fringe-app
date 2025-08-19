@@ -14,7 +14,8 @@ const ClientProvider = ({children}) => {
             return 
         } else {
             try {
-                const response = await axios.post('https://fringe-app-cd181fdc128d.herokuapp.com/add', clientData)
+                const response = await axios.post('https://fringe-app.onrender.com/add', clientData)
+                // const response = await axios.post('https://fringe-app-cd181fdc128d.herokuapp.com/add', clientData)
                 // const response = await axios.post('http://localhost:5000/add', clientData)
             } catch (error) {
                 console.error(error)
@@ -24,7 +25,8 @@ const ClientProvider = ({children}) => {
 
     const getAllClients = async () => {
         try {
-            const response = await axios.get('https://fringe-app-cd181fdc128d.herokuapp.com/')
+            const response = await axios.get('https://fringe-app.onrender.com/')
+            // const response = await axios.get('https://fringe-app-cd181fdc128d.herokuapp.com/')
             // const response = await axios.get('http://localhost:5000/')
             const data = response.data
             setClientList(data)
@@ -40,7 +42,8 @@ const ClientProvider = ({children}) => {
         }
 
         try {
-            const response = await axios.post('https://fringe-app-cd181fdc128d.herokuapp.com/client', clientName)
+            const response = await axios.post('https://fringe-app.onrender.com/client', clientName)
+            // const response = await axios.post('https://fringe-app-cd181fdc128d.herokuapp.com/client', clientName)
             // const response = await axios.post('http://localhost:5000/client', clientName)
             const data = response.data
             setClientDetail(data)
