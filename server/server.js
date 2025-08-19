@@ -76,10 +76,10 @@ app.post("/add", async (req, res) => {
     }
 })
 
-app.use(express.static(path.join(__dirname, "/client/public")))
+app.use(express.static(path.join(__dirname, "/client/dist")))
 
 app.use((req, res) => {
-    res.sendFile(path.join(__dirname, "/client/public", "index.html"))
+    res.sendFile(path.join(__dirname, "/client/dist", "index.html"))
 })
 
 app.listen(process.env.PORT || 5000, () => console.log(`Your cool server is listening on port ${process.env.PORT || 5000}`))
