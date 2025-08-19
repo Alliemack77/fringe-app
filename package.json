@@ -11,8 +11,9 @@
     "client": "cd server/client && npm run dev",
     "server": "cd server && npm run dev",
     "dev": "concurrently \"npm run client\" \"npm run server\"",
-    "start": "cd server && npm install && node server.js",
-    "heroku-postbuild": "cd server/client && npm install && npm run build"
+    "start": "cd server && npm start",
+    "heroku-postbuild": "cd server/client && npm install && npm run build", 
+    "build": "npm install --prefix server && npm install --prefix server/client && npm run build --prefix server/client"
   },
   "devDependencies": {
     "concurrently": "^9.2.0"
