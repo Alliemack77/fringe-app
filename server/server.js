@@ -1,6 +1,7 @@
 import express from "express"
 const app = express()
 import "dotenv/config"
+import path from 'path'
 import cors from "cors";
 const corsOptions = {
     origin: "http://localhost:5173", 
@@ -9,10 +10,9 @@ const corsOptions = {
 }
 import { MongoClient } from "mongodb";
 import uploadImage from "./uploadImage.js"
-import path from 'path'
-// import { fileURLToPath } from 'url';
-// const __filename = fileURLToPath(import.meta.url)
-const __dirname = path.resolve()
+import { fileURLToPath } from 'url';
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = path.dirname(__filename)
 // const PORT = process.env.PORT || 5000;
 const uri = process.env.MONGO_URL
 const client = new MongoClient(uri);
@@ -52,12 +52,10 @@ app.get("/",  async (req, res) => {
     res.send(result)
 })
 
-
 app.post("/client",  async (req, res) => {
     const result = await getClientById(req.body)
     res.send(result)
 })
-
 
 app.post("/upload", async (req, res) => {
 
@@ -73,7 +71,6 @@ app.post("/add", async (req, res) => {
     try {
         const result = await entries.insertOne(req.body);
         res.send(result)
-
     } catch (error) {
         console.error("An error occured in the addClient function", error)
     }
