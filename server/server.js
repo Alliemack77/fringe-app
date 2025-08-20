@@ -10,18 +10,21 @@ const corsOptions = {
 import { MongoClient } from "mongodb";
 import uploadImage from "./uploadImage.js"
 import path from 'path'
-import { fileURLToPath } from 'url';
-const __filename = fileURLToPath(import.meta.url)
-const __dirname = path.dirname(__filename)
+// import { fileURLToPath } from 'url';
+// const __filename = fileURLToPath(import.meta.url)
+const __dirname = path.resolve()
 // const PORT = process.env.PORT || 5000;
 const uri = process.env.MONGO_URL
 const client = new MongoClient(uri);
 const database = client.db("Fringe")
 const entries = database.collection("clients")
 
-app.use(cors(corsOptions))
 app.use(express.json())
 app.use(express.urlencoded({extended: false}))
+
+if(process.env.NODE_ENV !== "production") {
+    app.use(cors(corsOptions))
+}
 
 async function getAllClients() {
     try {
@@ -76,10 +79,13 @@ app.post("/add", async (req, res) => {
     }
 })
 
-app.use(express.static(path.join(__dirname, "/client/dist")))
+if(process.env.NODE_ENV === "production") {
+    app.use(express.static(path.join(__dirname, "client", "dist")))
 
-app.use((req, res) => {
-    res.sendFile(path.join(__dirname, "/client/dist", "index.html"))
-})
+    app.get(/.*/, (req, res) => {
+        res.sendFile(path.join(__dirname, "client", "dist", "index.html"))
+    })
+}
+
 
 app.listen(process.env.PORT || 5000, () => console.log(`Your cool server is listening on port ${process.env.PORT || 5000}`))
