@@ -2,18 +2,17 @@ import express from "express"
 const app = express()
 import "dotenv/config"
 import path from 'path'
+import { fileURLToPath } from 'url';
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = path.dirname(__filename)
 import cors from "cors";
 const corsOptions = {
     origin: "http://localhost:5173", 
     methods: ["POST", "GET"],  
     allowedHeaders: "Content-Type"
 }
-import { MongoClient } from "mongodb";
 import uploadImage from "./uploadImage.js"
-import { fileURLToPath } from 'url';
-const __filename = fileURLToPath(import.meta.url)
-const __dirname = path.dirname(__filename)
-// const PORT = process.env.PORT || 5000;
+import { MongoClient } from "mongodb";
 const uri = process.env.MONGO_URL
 const client = new MongoClient(uri)
 let entries;
@@ -59,7 +58,7 @@ async function getClientById(clientDetails) {
     }
 }
 
-app.get("/",  async (req, res) => {
+app.get("/api/client",  async (req, res) => {
     try {
         const result = await getAllClients()
         res.send(result)
