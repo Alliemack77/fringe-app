@@ -15,9 +15,8 @@ const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
 // const PORT = process.env.PORT || 5000;
 const uri = process.env.MONGO_URL
-const client = new MongoClient(uri);
-const database = client.db("Fringe")
-const entries = database.collection("clients")
+const client = new MongoClient(uri)
+let entries;
 
 app.use(express.json())
 app.use(express.urlencoded({extended: false}))
@@ -26,12 +25,25 @@ if(process.env.NODE_ENV !== "production") {
     app.use(cors(corsOptions))
 }
 
+async function initDB() {
+    try{
+        await client.connect()
+        const database = client.db("Fringe")
+        entries = database.collection("clients")
+    } catch (error) {
+        console.error("Failed to connect to MongoDB", error)
+    }
+}
+
+await initDB()
+
 async function getAllClients() {
     try {
         const items = await entries.find({}).toArray() 
         return items
-    } catch {
-        console.error("An error occured in the getAllClients function")
+    } catch (error) {
+        console.error("An error occured in the getAllClients function", error)
+        throw error
     }
 }
 
@@ -48,13 +60,22 @@ async function getClientById(clientDetails) {
 }
 
 app.get("/",  async (req, res) => {
-    const result = await getAllClients()
-    res.send(result)
+    try {
+        const result = await getAllClients()
+        res.send(result)
+    } catch {
+        res.status(500).send({ error: "Failed to get all clients"})
+    }
+    
 })
 
 app.post("/client",  async (req, res) => {
-    const result = await getClientById(req.body)
-    res.send(result)
+    try {
+        const result = await getClientById(req.body)
+        res.send(result)
+    } catch {
+        res.status(500).send({ error: "Failed to get client by that ID"})
+    }
 })
 
 app.post("/upload", async (req, res) => {
