@@ -34,7 +34,7 @@ async function initDB() {
     }
 }
 
-await initDB()
+initDB()
 
 async function getAllClients() {
     try {
@@ -62,7 +62,8 @@ app.get("/api/clients",  async (req, res) => {
     try {
         const result = await getAllClients()
         res.send(result)
-    } catch {
+    } catch (error) {
+        console.error("Error in /api/clients:", error)
         res.status(500).send({ error: "Failed to get all clients"})
     }
     
