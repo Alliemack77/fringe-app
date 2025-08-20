@@ -58,7 +58,7 @@ async function getClientById(clientDetails) {
     }
 }
 
-app.get("/api/client",  async (req, res) => {
+app.get("/api/clients",  async (req, res) => {
     try {
         const result = await getAllClients()
         res.send(result)

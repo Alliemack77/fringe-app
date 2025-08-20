@@ -25,7 +25,7 @@ const ClientProvider = ({children}) => {
 
     const getAllClients = async () => {
         try {
-            const response = await axios.get('https://fringe-app.onrender.com/api/client')
+            const response = await axios.get('https://fringe-app.onrender.com/api/clients')
             // const response = await axios.get('https://fringe-app-cd181fdc128d.herokuapp.com/')
             // const response = await axios.get('http://localhost:5000/')
             const data = response.data
