@@ -1,41 +1,34 @@
 import express from "express"
-const app = express()
-import "dotenv/config"
 import path from 'path'
 import { fileURLToPath } from 'url';
+import "dotenv/config"
+import cors from "cors";
+import uploadImage from "./uploadImage.js"
+import { MongoClient } from "mongodb";
+const app = express()
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
-import cors from "cors";
 const corsOptions = {
     origin: "http://localhost:5173", 
     methods: ["POST", "GET"],  
     allowedHeaders: "Content-Type"
 }
-import uploadImage from "./uploadImage.js"
-import { MongoClient } from "mongodb";
-const uri = process.env.MONGO_URL
-const client = new MongoClient(uri)
-let entries;
 
+//  Middleware
 app.use(express.json())
 app.use(express.urlencoded({extended: false}))
 
+// CORS for dev only
 if(process.env.NODE_ENV !== "production") {
     app.use(cors(corsOptions))
 }
 
-async function initDB() {
-    try{
-        await client.connect()
-        const database = client.db("Fringe")
-        entries = database.collection("clients")
-    } catch (error) {
-        console.error("Failed to connect to MongoDB", error)
-    }
-}
+// Mongo setup 
+const uri = process.env.MONGO_URL
+const client = new MongoClient(uri)
+let entries;
 
-initDB()
-
+// Mongo query functions
 async function getAllClients() {
     try {
         const items = await entries.find({}).toArray() 
@@ -58,52 +51,67 @@ async function getClientById(clientDetails) {
     }
 }
 
-app.get("/api/clients",  async (req, res) => {
+//  Connect to Mongo and Initialize server
+async function initServer() {
+
     try {
-        const result = await getAllClients()
-        res.send(result)
-    } catch (error) {
-        console.error("Error in /api/clients:", error)
-        res.status(500).send({ error: "Failed to get all clients"})
-    }
-    
-})
+        await client.connect()
+        const database = client.db("Fringe")
+        entries = database.collection("clients")
+        console.log("MongoDB connected")
 
-app.post("/client",  async (req, res) => {
-    try {
-        const result = await getClientById(req.body)
-        res.send(result)
-    } catch {
-        res.status(500).send({ error: "Failed to get client by that ID"})
-    }
-})
-
-app.post("/upload", async (req, res) => {
-
-    await uploadImage(req.body.image)
-        .then((url) => {
-            res.send(url)
+        app.listen(process.env.PORT || 5000, () => console.log(`Your cool server is listening on port ${process.env.PORT || 5000}`))
+        
+        app.get("/api/clients",  async (req, res) => {
+            try {
+                const result = await getAllClients()
+                res.send(result)
+            } catch (error) {
+                console.error("Error in /api/clients:", error)
+                res.status(500).send({ error: "Failed to get all clients"})
+            }
+            
         })
-        .catch((err) => console.log("There was an error", err))
-})
 
-app.post("/add", async (req, res) => {
+        app.post("/client",  async (req, res) => {
+            try {
+                const result = await getClientById(req.body)
+                res.send(result)
+            } catch {
+                res.status(500).send({ error: "Failed to get client by that ID"})
+            }
+        })
 
-    try {
-        const result = await entries.insertOne(req.body);
-        res.send(result)
+        app.post("/upload", async (req, res) => {
+
+            await uploadImage(req.body.image)
+                .then((url) => {
+                    res.send(url)
+                })
+                .catch((err) => console.log("There was an error", err))
+        })
+
+        app.post("/add", async (req, res) => {
+
+            try {
+                const result = await entries.insertOne(req.body);
+                res.send(result)
+            } catch (error) {
+                console.error("An error occured in the addClient function", error)
+            }
+        })
+
+        if(process.env.NODE_ENV === "production") {
+            app.use(express.static(path.join(__dirname, "client", "dist")))
+
+            app.get(/.*/, (req, res) => {
+                res.sendFile(path.join(__dirname, "client", "dist", "index.html"))
+            })
+        }
+
     } catch (error) {
-        console.error("An error occured in the addClient function", error)
+        console.error("Failed to start server", error)
     }
-})
-
-if(process.env.NODE_ENV === "production") {
-    app.use(express.static(path.join(__dirname, "client", "dist")))
-
-    app.get(/.*/, (req, res) => {
-        res.sendFile(path.join(__dirname, "client", "dist", "index.html"))
-    })
 }
 
-
-app.listen(process.env.PORT || 5000, () => console.log(`Your cool server is listening on port ${process.env.PORT || 5000}`))
+initServer()

@@ -15,7 +15,8 @@ export default function Dashboard() {
             const todaysDate = new Date() // today
             const prevDate = new Date() 
             prevDate.setDate(todaysDate.getDate() - 30) //sets prev date to 30 days before today
-            const serviceDate = new Date(item.history[0].date) // sets latest date of service
+            const lastItem = item.history[item.history.length - 1]// gets last item in the array
+            const serviceDate = new Date(lastItem.date) // sets latest date of service
 
             return (
                 serviceDate >= prevDate && serviceDate <= todaysDate
@@ -57,12 +58,12 @@ export default function Dashboard() {
                                 <div>
                                     <p><strong>{client.firstname} {client.lastname}</strong></p>
                                     <p> 
-                                        {client.history[0].service.map((item) => {
+                                        {client.history[client.history.length - 1].service.map((item) => {
                                             return (
                                                 <span className="service">{item} | </span>
                                             )
                                         })}
-                                        {client.history[0].total}
+                                        {client.history[client.history.length - 1].total}
                                     </p>
                                 </div>
                                 <Link aria-label={`Edit ${client.firstname} ${client.lastname}`} to={`/profile/clients/${client.firstname}-${client.lastname}`}>Edit</Link>
