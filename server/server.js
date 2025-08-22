@@ -26,7 +26,7 @@ if(process.env.NODE_ENV !== "production") {
 // Mongo setup 
 const uri = process.env.MONGO_URL
 const client = new MongoClient(uri)
-await client.connect()
+// await client.connect()
 const database = client.db("Fringe")
 const entries = database.collection("clients")
 
