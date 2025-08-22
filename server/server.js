@@ -26,7 +26,10 @@ if(process.env.NODE_ENV !== "production") {
 // Mongo setup 
 const uri = process.env.MONGO_URL
 const client = new MongoClient(uri)
-let entries;
+await client.connect()
+const database = client.db("Fringe")
+const entries = database.collection("clients")
+
 
 // Mongo query functions
 async function getAllClients() {
@@ -51,24 +54,6 @@ async function getClientById(clientDetails) {
     }
 }
 
-//  Connect to Mongo and Initialize server
-async function initServer() {
-
-    try {
-        await client.connect()
-        const database = client.db("Fringe")
-        entries = database.collection("clients")
-        console.log("MongoDB connected")
-
-        app.listen(process.env.PORT || 5000, () => console.log(`Your cool server is listening on port ${process.env.PORT || 5000}`))
-
-    } catch (error) {
-        console.error("Failed to start server", error)
-    }
-}
-
-initServer()
-
 app.get("/api/clients",  async (req, res) => {
     try {
         const result = await getAllClients()
@@ -77,7 +62,6 @@ app.get("/api/clients",  async (req, res) => {
         console.error("Error in /api/clients:", error)
         res.status(500).send({ error: "Failed to get all clients"})
     }
-    
 })
 
 app.post("/client",  async (req, res) => {
@@ -115,3 +99,5 @@ if(process.env.NODE_ENV === "production") {
         res.sendFile(path.join(__dirname, "client", "dist", "index.html"))
     })
 }
+
+app.listen(process.env.PORT || 5000, () => console.log(`Your cool server is listening on port ${process.env.PORT || 5000}`))
