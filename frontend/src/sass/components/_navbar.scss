@@ -1,0 +1,100 @@
+@use '../abstracts/colors' as *;
+@use '../base/typography' as *;
+
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    a { grid-row: 1 / 2;}
+    
+    .site-navigation {
+        grid-column: 3 / 4;
+        grid-row: 1 / 2;
+        justify-self: end;
+
+        .nav-toggle {
+            display: none;
+        }
+
+        ul {
+            display: flex;
+            gap: 2rem;
+        }
+
+        a {
+            font-size: $fs-700;
+        }
+
+        @media (max-width: 48em) {
+
+            .nav-toggle {
+                border: none;
+                background: transparent;
+                padding: 1rem;
+                display: flex;
+                position: absolute;
+                z-index: 30;
+                top: 1%;
+                right: 0;
+
+                svg path {
+                    fill: $clr-green;
+                }
+            }  
+
+            .nav-content {
+                background-color: $clr-green;
+                padding: 0 4rem;
+                position: absolute;
+                inset: 0;
+                align-content: center;
+
+                ul a { color: $clr-white;  font-size: $fs-800}
+            }
+           
+            .nav-toggle[aria-expanded='false'] + .nav-content {
+                position: fixed;
+                z-index: 20;
+                overflow-y: auto;
+                translate: 100%;
+                display: none;
+                transition-property: display, translate;
+                transition-duration: 400ms;
+                transition-timing-function: ease-in;
+                transition-behavior: allow-discrete;
+            }
+
+            .nav-toggle[aria-expanded='true'] + .nav-content {
+                z-index: 19;
+                translate: 0%;
+                display: block;
+                transition-property: display, translate;
+                transition-duration: 400ms;
+                transition-timing-function: ease-in;
+
+                @starting-style {
+                    translate: 100%;
+                }
+            }
+
+            .nav-toggle[aria-expanded='true'] > svg > path{
+                fill: $clr-white;
+            }
+
+            ul {
+                flex-direction: column;
+            }
+
+            
+        }
+    }
+}
+
+
+
+
+
+
+
+

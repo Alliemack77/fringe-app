@@ -1,0 +1,70 @@
+@use '../abstracts/colors' as *;
+@use '../base/typography' as *;
+
+.client-card {
+    --border-radius: 10px;
+
+    position: relative;
+    display: flex;
+    flex-direction: column;
+
+    > * + * {
+        margin-top: 1.25rem;
+    }
+
+    .text > * + * {
+        margin-bottom: .5rem;
+    } 
+
+    h2 a {
+        text-decoration: none;
+    }
+   
+    h2 a::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        z-index: 1;
+        cursor: pointer;
+        border: solid 2px transparent;
+        border-radius: var(--border-radius);
+        transition: box-shadow 200ms;
+    }
+
+    h2 a:hover::before , 
+    h2 a:focus::before {
+        box-shadow: 10px 15px 20px 5px hsla(92, 20%, 25%, 0.65);
+    }
+
+    .image {
+        height: 100%;
+
+        img {
+            object-fit: cover;
+            height: 100%;
+            width: 100%;
+            border-radius: var(--border-radius) var(--border-radius) 0 0;
+        }
+    }
+
+    .text {
+        padding: 0 1rem;
+    }
+
+    .tags {
+        display: flex;
+        gap: 1rem;
+        padding: 0 1rem 1rem;
+
+        .tag {
+            padding: .25em 1em;
+            color: $clr-white;
+            border-radius: var(--border-radius);
+        }
+
+        .tag.style { background-color: $clr-green;}
+        .tag.haircut { background-color: $clr-dark-grey;}
+        .tag.color { background-color: $clr-dark-peach; color: $clr-green;}
+        .tag.makeup { background-color: $clr-mauve; }
+    }
+}

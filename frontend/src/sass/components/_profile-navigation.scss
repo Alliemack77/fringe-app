@@ -1,0 +1,17 @@
+@use '../base/typography' as *;
+
+
+.profile-navigation {
+    padding: 2rem 0;
+
+    .nav-content ul {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1.5rem;
+    }
+    
+    a {
+        font-size: $fs-500;
+    }
+
+}

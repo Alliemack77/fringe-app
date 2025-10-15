@@ -1,0 +1,37 @@
+@use '../abstracts/colors' as *;
+@use '../base/typography' as *;
+
+body {
+  background-color: $clr-light-peach;
+  font-family: $ff-body;
+  font-weight: 500;
+  color: $clr-dark-grey;
+}
+
+h1 {
+  font-size: $fs-1000;
+  font-weight: $fw-700;
+}
+
+h2 {
+  font-size: $fs-700;
+  font-weight: $fw-700;
+}
+
+a {
+  color: $clr-dark-grey;
+  text-decoration: none;
+
+  &:hover, 
+  &.active {
+    font-weight: $fw-700;
+    text-decoration: underline 2px;
+    text-underline-offset: .250rem;
+  }
+}
+
+// buttons
+
+
+
+
