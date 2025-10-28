@@ -29,10 +29,10 @@ export default function Clients() {
                 <h1 id="clients-label">Your clients</h1>
                 { loading && <p>Loading clients...</p>}
                 { clientList.length > 0 && (
-                    <ul className="flexible-grid" style={flexibleGridStyles}>
+                    <ul role="list" className="flexible-grid" style={flexibleGridStyles}>
                         {clientList.map((client, index) => {
                             return (
-                                <ClientCard client={client} key={index} />
+                                <ClientCard url='/profile/clients/' client={client} key={index} />
                             )
                         })}
                     </ul>

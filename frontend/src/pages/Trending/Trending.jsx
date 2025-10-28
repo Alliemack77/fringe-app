@@ -21,7 +21,7 @@ export default function Trending() {
                 <ul className="flexible-grid" style={flexibleGridStyles}>
                     {mockTrending.map((client, index) => {
                         return (
-                            <ClientCard client={client} key={index}/>
+                            <ClientCard url="/trending/" client={client} key={index}/>
                         )
                     })}
                 </ul>

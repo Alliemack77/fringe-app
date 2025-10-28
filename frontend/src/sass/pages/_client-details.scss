@@ -1,0 +1,58 @@
+@use '../abstracts/colors' as *;
+@use '../base/typography' as *;
+
+.client-details {
+    background-color: $clr-white;
+    padding: 2rem;
+    margin-block-start: 2em;
+
+    .client-text {
+        display: flex;
+        gap: 2rem;
+
+        img { 
+            order: 0;
+         }
+
+        div { order: 1;}
+        
+        & p {
+            margin-block-end: .5em;
+        }
+
+        & a {
+            color: $clr-mauve;
+        }
+
+        & a:hover {
+            text-decoration-color: $clr-mauve;
+        }
+
+        & a:focus-within {
+            outline: $clr-mauve 2px solid;
+        }
+    }
+
+    .history {
+
+        .detail-item {
+            padding: 1rem;
+
+            h2 {
+                margin-block-end: .5em;
+            }
+            
+            ul {
+                margin: 0;
+            }
+            
+            &:nth-child(odd) {
+                background-color: $clr-extra-light-grey;
+            }
+        }
+
+    }
+
+    
+
+}

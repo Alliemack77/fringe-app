@@ -13,7 +13,7 @@
     }
 
     .text > * + * {
-        margin-bottom: .5rem;
+        margin-bottom: .5em;
     } 
 
     h2 a {
@@ -27,7 +27,7 @@
         z-index: 1;
         cursor: pointer;
         border: solid 2px transparent;
-        border-radius: var(--border-radius);
+        // border-radius: var(--border-radius);
         transition: box-shadow 200ms;
     }
 
@@ -43,7 +43,7 @@
             object-fit: cover;
             height: 100%;
             width: 100%;
-            border-radius: var(--border-radius) var(--border-radius) 0 0;
+            // border-radius: var(--border-radius) var(--border-radius) 0 0;
         }
     }
 
@@ -54,7 +54,7 @@
     .tags {
         display: flex;
         gap: 1rem;
-        padding: 0 1rem 1rem;
+        padding: 1rem 1rem;
 
         .tag {
             padding: .25em 1em;

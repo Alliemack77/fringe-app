@@ -20,7 +20,7 @@
         font-weight: $fw-700;
     }
 
-    .review svg { margin-inline-start: 1rem;}
+    .review svg { margin-inline-start: 1em;}
 
     .recent-clients {
         container-type: inline-size;
@@ -31,7 +31,7 @@
         background-color: $clr-white;
         padding: 2rem;
 
-        img { margin-block-end: 1rem;}
+        img { margin-block-end: 1em;}
 
         p:has(.service) {
             padding: 0 0 .75rem;

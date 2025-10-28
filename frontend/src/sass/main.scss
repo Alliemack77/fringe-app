@@ -6,8 +6,10 @@
 
 // Components
 @use './components/client-card';
+@use './components/footer';
 @use './components/navbar';
 @use './components/profile-navigation';
 
 // Pages
 @use './pages/dashboard';
+@use './pages/client-details';

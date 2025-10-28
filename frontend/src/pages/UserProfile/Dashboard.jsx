@@ -49,7 +49,7 @@ export default function Dashboard() {
                     <h2 id="recent-clients-label">Recent Clients</h2>
                     <Link to="/profile/clients">View all clients</Link>
                 </div>
-                <ul className="flexible-grid">
+                <ul className="flexible-grid" role="list">
 
                     {filteredlist.map((client) => {
                         return (

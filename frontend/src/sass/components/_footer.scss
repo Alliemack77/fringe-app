@@ -1,0 +1,15 @@
+@use '../abstracts/colors' as *;
+@use '../base/typography' as *;
+
+footer {
+    background-color: $clr-dark-grey;
+    display: grid;
+    place-content: center;
+    padding: 5rem 1rem;
+    margin-block-start: 4em;
+    color: $clr-white;
+    // position: absolute;
+    // bottom: 100;
+    // right: 0;
+    // left: 0;
+}

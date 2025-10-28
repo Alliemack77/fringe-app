@@ -11,12 +11,12 @@ export default function ProfileLayout () {
                 <span className="sr-only" id="profile-nav-label">User Dashboard</span>
                 <div className="nav-content" role="group" aria-label="Navigation">
                     <ul role="list">
-                        <li><NavLink to="/profile">Dashboard</NavLink></li>
-                        <li><NavLink to="/profile/clients">Clients</NavLink></li>
-                        <li><NavLink to="/profile/gallery">Gallery</NavLink></li>
-                        <li><NavLink to="/profile/income">Income</NavLink></li>
-                        <li><NavLink to="/profile/create-client">Add New Client</NavLink></li>
-                        {/* <li><NavLink to="/profile/reviews">Reviews</NavLink></li> */}
+                        <li><NavLink to="." end>Dashboard</NavLink></li>
+                        <li><NavLink to="clients">Clients</NavLink></li>
+                        <li><NavLink to="gallery">Gallery</NavLink></li>
+                        <li><NavLink to="income">Income</NavLink></li>
+                        <li><NavLink to="create-client">Add New Client</NavLink></li>
+                        {/* <li><NavLink to="reviews">Reviews</NavLink></li> */}
                     </ul>
                 </div>
             </nav>
