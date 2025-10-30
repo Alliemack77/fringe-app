@@ -1,6 +1,7 @@
 @use '../abstracts/colors' as *;
 @use '../base/typography' as *;
 
+// typography
 body {
   background-color: $clr-light-peach;
   font-family: $ff-body;
@@ -35,13 +36,50 @@ a {
     font-weight: 700;
   }
 
-  &:focus-within {
+  &:focus-visible {
     outline: solid 2px $clr-dark-grey;
   }
 }
 
+// tags
+.tags {
+  display: flex;
+  gap: 1rem;
+
+  // li {
+  //   padding: 1rem 1rem;
+  // }
+}
+
+.tag {
+  padding: .45em 1em;
+  color: $clr-white;
+  border-radius: 10px;
+}
+
+.tag.style { background-color: $clr-green;}
+.tag.haircut { background-color: $clr-dark-grey;}
+.tag.color { background-color: $clr-dark-peach; color: $clr-green;}
+.tag.makeup { background-color: $clr-mauve; }
+
 // buttons
+.button {
+  background-color: $clr-green;
+  padding: 1em 1.75em;
+  color: $clr-white;
+  font-weight: $fw-700;
+  border-radius: 10px;
+  border: solid 2px $clr-green;
+  text-decoration: none;
+  transition: color, background-color 500ms ease;
 
-
-
+  &:hover, 
+  &:active {
+    text-decoration: none;
+    color: $clr-green;
+    border: solid 2px $clr-green;
+    background-color: $clr-dark-peach;
+    transition: color, background-color 500ms ease;
+  }
+}
 

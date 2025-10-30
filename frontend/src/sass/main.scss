@@ -11,5 +11,6 @@
 @use './components/profile-navigation';
 
 // Pages
+@use './pages/client-detail';
 @use './pages/dashboard';
-@use './pages/client-details';
+@use './pages/trending-detail';

@@ -2,7 +2,6 @@
 @use '../base/typography' as *;
 
 .client-card {
-    --border-radius: 10px;
 
     position: relative;
     display: flex;
@@ -12,9 +11,7 @@
         margin-top: 1.25rem;
     }
 
-    .text > * + * {
-        margin-bottom: .5em;
-    } 
+    h2 { margin-block-end: .75em; }
 
     h2 a {
         text-decoration: none;
@@ -27,7 +24,6 @@
         z-index: 1;
         cursor: pointer;
         border: solid 2px transparent;
-        // border-radius: var(--border-radius);
         transition: box-shadow 200ms;
     }
 
@@ -43,28 +39,14 @@
             object-fit: cover;
             height: 100%;
             width: 100%;
-            // border-radius: var(--border-radius) var(--border-radius) 0 0;
         }
     }
 
     .text {
-        padding: 0 1rem;
+        padding: 0 1rem 1.5rem;
     }
 
-    .tags {
-        display: flex;
-        gap: 1rem;
-        padding: 1rem 1rem;
+    
 
-        .tag {
-            padding: .25em 1em;
-            color: $clr-white;
-            border-radius: var(--border-radius);
-        }
-
-        .tag.style { background-color: $clr-green;}
-        .tag.haircut { background-color: $clr-dark-grey;}
-        .tag.color { background-color: $clr-dark-peach; color: $clr-green;}
-        .tag.makeup { background-color: $clr-mauve; }
-    }
+    
 }

@@ -1,10 +1,9 @@
-import { useContext, useEffect } from "react"
+import { useContext, useEffect, useState } from "react"
 import { useParams, Link, NavLink,  Outlet } from "react-router-dom"
 import { ClientContext } from "../../context/client-context"
 
 
 export default function ClientDetail() {
-
     const params = useParams()
     const id = params.id
     const {clientDetail, getClientById} = useContext(ClientContext)
@@ -28,7 +27,7 @@ export default function ClientDetail() {
                 Back to all clients
             </Link>
 
-            <div className="client-details">
+            <div className="client-detail">
                 <div className="client-text">
                     <div>
                         <h1>{`${clientDetail.firstname} ${clientDetail.lastname}`}</h1>

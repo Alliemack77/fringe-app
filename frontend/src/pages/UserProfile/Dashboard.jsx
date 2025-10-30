@@ -5,7 +5,7 @@ import { ClientContext } from "../../context/client-context"
 export default function Dashboard() {
     const { clientList, getAllClients } = useContext(ClientContext)
 
-    const filteredlist = clientList.filter((item) => {
+    const filteredList = clientList.filter((item) => {
         if(item.history) {
             const todaysDate = new Date() // today
             const prevDate = new Date() 
@@ -19,6 +19,26 @@ export default function Dashboard() {
             
         } 
     })
+
+    // const filteredList = [
+    //     {
+    //         email: "olivia.ramirez12@email.com",
+    //         firstname: "Olivia",
+    //         history: [
+    //             {
+    //                 date: "2025-10-01T07:00:00.000Z",
+    //                 service: ['full highlight', 'haircut', 'blowout'],
+    //                 total:"$375"
+    //             }
+    //         ],
+    //         imageUrl: "https://res.cloudinary.com/dtzlnnnf6/image/upload/v1745888386/i8xa2swl5ju1pxwixaqy.jpg",
+    //         lastname:"Ramirez",
+    //         phone: "916-555-3745",
+    //         tags: ['style', 'color', 'haircut'],
+    //         _id: "681024842d6cd05105f9a056"
+    //     }, 
+        
+    // ]
 
     useEffect(() => {
         getAllClients()
@@ -50,26 +70,33 @@ export default function Dashboard() {
                     <Link to="/profile/clients">View all clients</Link>
                 </div>
                 <ul className="flexible-grid" role="list">
+                    { filteredList.length > 0 ?
+                    
+                    
+                        filteredList.map((client) => {
+                            return (
+                                <li key={client.firstname} className="recent-card">
+                                    <img src={client.imageUrl} alt="" />
+                                    <div>
+                                        <p><strong>{client.firstname} {client.lastname}</strong></p>
+                                        <p> 
+                                            {client.history[client.history.length - 1].service.map((item) => {
+                                                return (
+                                                    <span className="service" key={item}>{item} | </span>
+                                                )
+                                            })}
+                                            {client.history[client.history.length - 1].total}
+                                        </p>
+                                    </div>
+                                    <Link aria-label={`Edit ${client.firstname} ${client.lastname}`} to={`/profile/clients/${client._id}`}>Edit</Link>
+                                </li>
+                            )
+                        }) :
 
-                    {filteredlist.map((client) => {
-                        return (
-                            <li key={client.firstname} className="recent-card">
-                                <img src={client.imageUrl} alt="" />
-                                <div>
-                                    <p><strong>{client.firstname} {client.lastname}</strong></p>
-                                    <p> 
-                                        {client.history[client.history.length - 1].service.map((item) => {
-                                            return (
-                                                <span className="service" key={item}>{item} | </span>
-                                            )
-                                        })}
-                                        {client.history[client.history.length - 1].total}
-                                    </p>
-                                </div>
-                                <Link aria-label={`Edit ${client.firstname} ${client.lastname}`} to={`/profile/clients/${client._id}`}>Edit</Link>
-                            </li>
-                        )
-                    })}
+                        <p>There's nothing to see here. <Link to="/profile/create-client">Add a new client</Link> or update an existing.</p>
+                    
+                    
+                    }
 
                 </ul>
             </section>

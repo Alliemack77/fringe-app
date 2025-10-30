@@ -1,0 +1,55 @@
+@use '../abstracts/colors' as *;
+@use '../abstracts/fonts' as *;
+@use '../base/typography' as *;
+
+.trending-detail {
+
+    a { margin-block-end: 2em; }
+   
+    img {
+        grid-column: 2 / 3;
+        grid-row: 2 / 3;
+        
+    }
+
+    .tags-wrapper {
+        grid-column: 2 / 3;
+        grid-row: 3 / 4;
+    }
+
+    .text {
+        grid-column: 3 / 4;
+        grid-row: 2 / 3;
+        margin-inline-start: 1rem;
+
+        .intro {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+
+            h1 { font-size: $fs-800 }
+            p { font-size: $fs-700 }
+
+
+        }
+
+        & > p { margin-block: 2em; }
+    }
+
+    .tags {
+        margin-block-start: 1.5em;
+    }
+
+    @media (max-width: 48rem) {
+         img {
+            grid-column: 2 / 4;
+         }
+
+        .text {
+            grid-column: 2 / 4;
+            grid-row: 4 / 5;
+            margin-block-start: 4em;
+        }
+    }
+
+}
