@@ -1,13 +1,25 @@
 import { useParams, Link } from "react-router-dom"
 import mockTrending from "../../mock-data/mock-trending"
+import users from "../../mock-data/mock-users"
 
 export default function TrendingDetail() {
     const params = useParams()
     const id = params.id
 
-    const matchingPerson = mockTrending.find(person => {
+    const stylist = 
+        users.find((user) => {
+            return (
+                user.clients.find((client) => {
+                    return (
+                        client._id === id
+                    )
+                })
+            )
+    })
+
+    const matchingPerson = stylist.clients.find(client => {
         return (
-            person._id === id
+            client._id === id
         )
     })
 
@@ -48,14 +60,12 @@ export default function TrendingDetail() {
                 <div className="intro">
                     <img src="/images/avatar.png" height="100" width="100" alt=""/>
                     <div>
-                        <h1>Cleo Anderson</h1>
+                        <h1>{stylist.firstname} {stylist.lastname}</h1>
                         <p>stylist</p>
                     </div>
                 </div>
-
-                <p>With 20+ years behind the chair, I specialize in lived-in colour, precision cuts, and styles that work with your life—not against it. Whether you're ready for a bold change or a subtle refresh, I’ve got you. Let’s create something that feels like you!</p>
-
-                <Link className="button" to="mailto:cleo.anderson@mail.com">Book with Cleo</Link>
+                <p>{stylist.bio}</p>
+                <Link className="button" to={`mailto:${stylist.email}`}>Book with {stylist.firstname}</Link>
             </div>
             
         </section>

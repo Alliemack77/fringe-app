@@ -6,7 +6,7 @@ const ClientCard = (props) => {
     
     <li className='client-card'>
         <div className="image">
-          <img src={props.client.imageUrl} />
+          <img src={props.client.imageUrl} alt=""/>
         </div>
 
         <div className="text">
@@ -15,7 +15,7 @@ const ClientCard = (props) => {
           </h2>
           { props.client.tags &&
             <>
-              <span className='sr-only' id='category-label'>categories</span>
+              <span id='category-label' hidden={true}>categories</span>
               <ul role="list" className="tags" aria-labelledby="category-label">
                 {props.client.tags.map((tag) => {
                   return (
