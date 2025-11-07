@@ -24,8 +24,9 @@ export default function App () {
         <BrowserRouter>
             <Routes>
               <Route path="/" element={<Layout />}>
-                <Route index element={<Home />}/>
-                <Route path="trending" element={<Trending />}/>
+                <Route index element={<Trending />}/>
+                {/* <Route index element={<Home />}/> */}
+                {/* <Route path="trending" element={<Trending />}/> */}
                 <Route path="trending/:id" element={<TrendingDetail />}/>
                 
                 <Route path="profile" element={<ProfileLayout />}>
