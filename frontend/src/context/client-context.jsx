@@ -12,13 +12,12 @@ const ClientProvider = ({children}) => {
     const [clientDetail, setClientDetail] = useState([])
 
 
-    const API_BASE = "http://localhost:5000"
+    const API_BASE = import.meta.env.MODE === "development" ? "http://localhost:5000/api" : "/api"
 
     const getAllClients = async () => {
-        // setLoading(true)
         try {
             setLoading(true)
-            const response = await axios.get(`${API_BASE}/api/clients`)
+            const response = await axios.get(`${API_BASE}/clients`)
             const data = response.data
             setClientList(data)
         } catch (error) {
@@ -33,7 +32,7 @@ const ClientProvider = ({children}) => {
         const clientId = id
 
         try {
-            const response = await axios.get(`${API_BASE}/api/clients/${clientId}`)
+            const response = await axios.get(`${API_BASE}/clients/${clientId}`)
             const data = response.data
             setClientDetail(data)
         } catch (error) {
@@ -47,7 +46,7 @@ const ClientProvider = ({children}) => {
             return 
         } else {
             try {
-                await axios.post(`${API_BASE}/api/clients`, clientData)
+                await axios.post(`${API_BASE}/clients`, clientData)
                 toast.success("Client added successfully!")
                 
             } catch (error) {
