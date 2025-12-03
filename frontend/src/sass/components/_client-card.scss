@@ -13,11 +13,13 @@
 
     h2 { margin-block-end: .75em; }
 
-    h2 a {
+    h2 span { font-weight:$fw-400 }
+
+    a {
         text-decoration: none;
     }
    
-    h2 a::before {
+    a::before {
         content: "";
         position: absolute;
         inset: 0;
@@ -27,8 +29,8 @@
         transition: box-shadow 200ms;
     }
 
-    h2 a:hover::before , 
-    h2 a:focus::before {
+    a:hover::before , 
+    a:focus::before {
         box-shadow: 10px 15px 20px 5px hsla(92, 20%, 25%, 0.65);
     }
 

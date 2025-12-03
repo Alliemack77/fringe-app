@@ -29,7 +29,7 @@ export default function Navbar () {
                 </button>
                 <div role='group' className='nav-content' aria-label='Navigation'>
                     <ul role='list' >
-                        <li><NavLink to="/trending" >Trending</NavLink></li>
+                        <li><NavLink to="/" >Trending</NavLink></li>
                         <li><NavLink to="/profile">Profile</NavLink></li>
                     </ul>
                 </div>

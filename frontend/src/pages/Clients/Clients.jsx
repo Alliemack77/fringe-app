@@ -5,8 +5,8 @@ import ClientCard from "../../components/ClientCard.jsx"
 export default function Clients() {
     
     // const [url, setUrl] = useState("")
-    const [loading, setLoading] = useState(true)
-    const { clientList, getAllClients } = useContext(ClientContext)
+    // const [loading, setLoading] = useState(true)
+    const { loading, clientList, getAllClients } = useContext(ClientContext)
 
     const flexibleGridStyles = {
         "--width": "300px", 
@@ -20,7 +20,7 @@ export default function Clients() {
    
     useEffect(() => {
         getAllClients()
-        return () => setLoading(false)
+        // return () => setLoading(false)
     }, [])
 
     return (

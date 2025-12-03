@@ -7,21 +7,25 @@ const ClientContext = createContext()
 const ClientProvider = ({children}) => {
 
     // const [clientData, setClientData] = useState({})
+    const [loading, setLoading] = useState(true)
     const [clientList, setClientList] = useState([])
     const [clientDetail, setClientDetail] = useState([])
-    const [loading, setLoading] = useState(true)
 
 
     const API_BASE = "http://localhost:5000"
 
     const getAllClients = async () => {
+        // setLoading(true)
         try {
+            setLoading(true)
             const response = await axios.get(`${API_BASE}/api/clients`)
             const data = response.data
             setClientList(data)
         } catch (error) {
-            console.log("Error getting notes", error)
-            toast.error("Failed to load notes")
+            console.log("Error getting clients", error)
+            toast.error("Failed to load clients")
+        } finally {
+            setLoading(false)
         }
     }
 
@@ -59,6 +63,7 @@ const ClientProvider = ({children}) => {
             value={{
                 clientDetail, 
                 setClientDetail,
+                loading,
                 // clientData, 
                 // setClientData, 
                 clientList, 

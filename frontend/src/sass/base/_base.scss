@@ -7,6 +7,8 @@ body {
   font-family: $ff-body;
   font-weight: 500;
   color: $clr-dark-grey;
+  height: 100%;
+  // position: relative;
 }
 
 h1 {
@@ -48,15 +50,31 @@ a {
 }
 
 .tag {
-  padding: .45em 1em;
+  padding: .25em .75em;
   color: $clr-white;
   border-radius: 10px;
 }
 
+.tag a {
+  text-decoration: none;
+}
+
+li.tag:has(a) {
+  color: $clr-green;
+  background-color: $clr-peach;
+  // border: solid $clr-green 2px; 
+}
+
+li.tag:has(a):hover:not(li.tag.clear) {
+  background-color: $clr-dark-peach;
+}
+
 .tag.style { background-color: $clr-green;}
 .tag.haircut { background-color: $clr-dark-grey;}
-.tag.color { background-color: $clr-dark-peach; color: $clr-green;}
+.tag.color, .tag.color a { background-color: $clr-dark-peach; color: $clr-green;}
 .tag.makeup { background-color: $clr-mauve; }
+.tag.clear { background-color: transparent; text-decoration: underline;} 
+  
 
 // buttons
 .button {
